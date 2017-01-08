@@ -1,15 +1,20 @@
 <html>
 <body>
-<form id='register' action='register.php' method='post' accept-charset='UTF-8'>
-<fieldset>
-<legend>Register</legend>
-<input type='hidden' name='submitted' id='submitted' value='1'/>
-<label for='username' >Username:</label>
-<input type='text' name='username' id='username' maxlength="255" />
-<label for='password' >Password:</label>
-<input type='password' name='password' id='password' maxlength="255" />
-<input type='submit' name='Submit' value='Submit'/>
-</fieldset>
-</form>
+    <form id='register' action='register.php' method='post' accept-charset='UTF-8'>
+        <fieldset>
+            <legend>Register</legend>
+            <input type='hidden' name='submitted' id='submitted' value='1'/>
+            <label for='username' >Username:</label>
+            <input type='text' name='username' id='username' maxlength="255" />
+            <label for='password' >Password:</label>
+            <input type='password' name='password' id='password' maxlength="255" />
+            <input type='submit' name='Submit' value='Submit'/>
+        </fieldset>
+    </form>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        Select image to upload:
+        <input type="file" name="userfile" id="userfile">
+        <input type="submit" value="Upload Image" name="submit">
+    </form>
 </body>
 </html>
