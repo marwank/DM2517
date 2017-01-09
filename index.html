@@ -1,14 +1,23 @@
 <html>
 <body>
-    <form id='register' action='register.php' method='post' accept-charset='UTF-8'>
+    <form action='register.php' method='post' accept-charset='UTF-8'>
         <fieldset>
             <legend>Register</legend>
-            <input type='hidden' name='submitted' id='submitted' value='1'/>
             <label for='username' >Username:</label>
             <input type='text' name='username' id='username' maxlength="255" />
             <label for='password' >Password:</label>
             <input type='password' name='password' id='password' maxlength="255" />
-            <input type='submit' name='Submit' value='Submit'/>
+            <input type='submit' name='Submit' value='Register'/>
+        </fieldset>
+    </form>
+    <form action='login.php' method='post' accept-charset='UTF-8'>
+        <fieldset>
+            <legend>Login</legend>
+            <label for='username' >Username:</label>
+            <input type='text' name='username' id='username' maxlength="255" />
+            <label for='password' >Password:</label>
+            <input type='password' name='password' id='password' maxlength="255" />
+            <input type='submit' name='Login' value='Login'/>
         </fieldset>
     </form>
     <form action="upload.php" method="post" enctype="multipart/form-data">
