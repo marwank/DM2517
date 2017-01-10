@@ -17,5 +17,12 @@
     <input type="file" accept="image/jpeg,image/gif,image/x-png" name="userimage" id="userimage">
     <input type="submit" value="Upload Image" name="submit">
   </form>
+  <?php
+  $sql = "SELECT image from Posts";
+  $result = mysqli_query($conn, $sql);
+  while ($row = mysqli_fetch_assoc($result)) {
+    echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>';
+  }
+  ?>
 </body>
 </html>
