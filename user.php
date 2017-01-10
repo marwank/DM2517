@@ -13,7 +13,7 @@ $username = $_GET['username'];
 <body>
   <?php
   $sql = "SELECT image from Posts WHERE uid IN
-  (SELECT uid FROM Users WHERE username = '$username')";
+  (SELECT id FROM Users WHERE username = '$username')";
   $result = mysqli_query($conn, $sql);
   while ($row = mysqli_fetch_assoc($result)) {
     echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>';
