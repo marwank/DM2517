@@ -5,10 +5,10 @@ if (!isset($_SESSION['username'])) {
   header("location:login.php");
 }
 
-$fileName = $_FILES['userfile']['name'];
-$tmpName = $_FILES['userfile']['tmp_name'];
-$fileSize = $_FILES['userfile']['size'];
-$fileType = $_FILES['userfile']['type'];
+$fileName = $_FILES['userimage']['name'];
+$tmpName = $_FILES['userimage']['tmp_name'];
+$fileSize = $_FILES['userimage']['size'];
+$fileType = $_FILES['userimage']['type'];
 $fp = fopen($tmpName, 'r');
 $content = fread($fp, filesize($tmpName));
 $content = addslashes($content);
