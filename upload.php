@@ -27,7 +27,8 @@ $content = fread($fp, filesize($tmpName));
 $content = addslashes($content);
 fclose($fp);
 
-$sql = "INSERT INTO Posts (uid, description, image) VALUES ('3', 'Test description', '$content')";
+$userid = $_SESSION['uid'];
+$sql = "INSERT INTO Posts (uid, description, image) VALUES ('$userid', 'Test description', '$content')";
 if (mysqli_query($conn, $sql)) {
     header("location: welcome.php");
 } else {
