@@ -7,8 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $sql = "SELECT id FROM Users WHERE username = '$username' AND password = '$password'";
   $result = mysqli_query($conn, $sql);
-  $count = mysqli_num_rows($result);
-  $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+  $row = mysqli_fetch_assoc($result)
 
   if ($count == 1) {
     $_SESSION['uid'] = $row;
