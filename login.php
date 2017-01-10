@@ -1,6 +1,10 @@
 <?php
 include("config.php");
 session_start();
+if (isset($_SESSION['username'])) {
+  header("location:welcome.php");
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = $_POST['username'];
   $password = $_POST['password'];
