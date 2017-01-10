@@ -1,13 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "marwank";
-$password = "marwank-xmlpub16";
-$dbname = "marwank";
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-/* check connection */
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+include('config.php');
+session_start();
+if (!isset($_SESSION['username'])) {
+  header("location:login.php");
 }
 
 $fileName = $_FILES['userfile']['name'];
@@ -21,7 +16,7 @@ fclose($fp);
 
 $sql = "INSERT INTO Posts (uid, description, image) VALUES ('3', 'Test description', '$content')";
 if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
+    header("location: welcome.php");
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
