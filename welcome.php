@@ -10,7 +10,7 @@
   <title>Welcome</title>
 </head>
 <body>
-  <h1>Welcome <?php echo $_SESSION['username']; ?></h1>
+  <h1>Welcome <?php echo $_SESSION['uid']; ?></h1>
   <h2><a href="login.php">Sign Out</a></h2>
   <form action="upload.php" method="post" enctype="multipart/form-data">
     Select image to upload:
