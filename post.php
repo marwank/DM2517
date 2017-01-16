@@ -23,7 +23,8 @@ if ($id = $_GET['id']) {
 <body>
   <?php
   if ($row) {
-    echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>';
+    echo '<img src="data:image/jpeg;base64,'. base64_encode($row['image']) . '"/>';
+    echo '<p> Image description: ' . $row['description'] . '</p>';
   }
 
   if (isset($_SESSION['uid']) && ($_SESSION['uid'] == $row['uid'])) {
