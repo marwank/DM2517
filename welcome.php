@@ -18,10 +18,12 @@ if (!isset($_SESSION['username'])) {
         <input type="submit" value="Upload Image" name="submit"/>
     </form>
     <?php
-    $sql = "SELECT image from Posts";
+    $sql = "SELECT * from Posts";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
-        echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>';
+        echo '<a href="post.php?id=' . $row['id'] . '">
+        <img src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>
+        </a>';
     }
     ?>
 </body>
