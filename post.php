@@ -41,6 +41,14 @@ if ($id = $_GET['id']) {
     <input type="submit" value="Edit description">
     </form>';
   }
+  if (isset($_SESSION['uid'])) {
+      echo '<form action="post.php" method="get">
+      Add a comment to this image:
+      <input type="text" accept="text/plain" name="comment" id="comment"/>
+      <input type="hidden" name="id" value="' . $id . '"/>
+      <input type="submit" value="Add comment" />
+      </form>';
+  }
   ?>
 </body>
 </html>
