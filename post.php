@@ -28,14 +28,15 @@ if ($id = $_GET['id']) {
 
   if (isset($_SESSION['uid']) && ($_SESSION['uid'] == $row['uid'])) {
     echo '<form action="post.php" method="get">
-    <input type="hidden" name="id" value="' . $id . '"/>
     Add a tag to your image:
     <input type="text" accept="text/plain" name="tag" id="tag"/>
+    <input type="hidden" name="id" value="' . $id . '"/>
     <input type="submit" value="Add tag"/>
     </form>';
-    echo '<form action="post.php?id=' . $id . '" method="post" enctype="text/plain">
+    echo '<form action="post.php" method="get">
     Edit the description of your image:
     <input type="text" accept="text/plain" name="desc" id="desc">
+    <input type="hidden" name="id" value="' . $id . '"/>
     <input type="submit" value="Edit description">
     </form>';
   }
