@@ -27,6 +27,11 @@ if ($id = $_GET['id']) {
                 <input type="text" accept="text/plain" name="usertag" id="usertag"/>
                 <input type="submit" value="Add tag"/>
               </form>';
+        echo '<form action="post.php?id=' . $id . '" method="post" enctype="text/plain">
+                Edit the description of your image:
+                <input type="text" accept="text/plain" name="userdesc" id="userdesc">
+                <input type="submit" value="Edit description">
+              </form>'
     }
     ?>
 </body>
