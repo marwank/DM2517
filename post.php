@@ -5,9 +5,7 @@ if ($id = $_GET['id']) {
     $sql = "SELECT * FROM Posts WHERE id = '$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-    echo 'BEFORE TAG';
     if ($tag = $_GET['usertag']) {
-      echo 'TAG WORKS';
       $query = "INSERT INTO Tags (pid, tag) VALUES ('$id', '$tag')";
       if (!mysqli_query($conn, $query)) {
           echo "Error: " . $query . "<br>" . mysqli_error($conn);
@@ -23,10 +21,11 @@ if ($id = $_GET['id']) {
     }
 
     if (isset($_SESSION['uid']) && ($_SESSION['uid'] == $row['uid'])) {
-        echo '<form action="post.php?id=' . $id . '" method="post" enctype="text/plain">
+        echo '<form action="post.php" method="get">
+                <input type="hidden" name="id" value="' . $id . '"/>
                 Add a tag to your image:
                 <input type="text" accept="text/plain" name="usertag" id="usertag"/>
-                <input type="submit" value="Add tag" name="submit"/>
+                <input type="submit" value="Add tag"/>
               </form>';
     }
     ?>
