@@ -2,7 +2,7 @@
 include('config.php');
 session_start();
 if (!isset($_SESSION['username'])) {
-  header("location:login.php");
+    header("location:login.php");
 }
 
 if ($_FILES['userimage']['error'] !== UPLOAD_ERR_OK) {
