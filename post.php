@@ -9,7 +9,8 @@ if ($id = $_GET['id']) {
     }
   }
 
-  if ($comment = $_POST['comment'] && $uid = $_SESSION['uid']) {
+  if ($comment = $_POST['comment']) {
+    $uid = $_SESSION['uid'];
     $query = "INSERT INTO Comments (uid, pid, content) VALUES ('$uid', '$id', '$comment')";
     if (!mysqli_query($conn, $query)) {
       echo "Error: " . $query . "<br>" . mysqli_error($conn);
@@ -48,6 +49,7 @@ if ($id = $_GET['id']) {
     <input type="submit" value="Edit description">
     </form>';
   }
+
   if (isset($_SESSION['uid'])) {
     echo '<form method="post" action="post.php?id=' . $id . '">
     Add a comment to this image:
