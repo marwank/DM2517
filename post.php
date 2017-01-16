@@ -31,6 +31,8 @@ if ($id = $_GET['id']) {
 ?>
 <html>
 <body>
+    <a href="welcome.php">Home</a>
+    <br>
     <?php
     if ($row) {
         echo '<img src="data:image/jpeg;base64,'. base64_encode($row['image']) . '"/>';
