@@ -1,16 +1,14 @@
 <?php
 include('config.php');
 session_start();
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $id = $_GET['id'];
+if ($id = $_GET['id']) {
     $sql = "SELECT * FROM Posts WHERE id = '$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      $tag = $_POST['usertag'];
-      $sql = "INSERT INTO Tags (pid, tag) VALUES ('$id', '$tag')";
-      if (!mysqli_query($conn, $sql)) {
-          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    if ($tag = $_POST['usertag']) {
+      $query = "INSERT INTO Tags (pid, tag) VALUES ('$id', '$tag')";
+      if (!mysqli_query($conn, $query)) {
+          echo "Error: " . $query . "<br>" . mysqli_error($conn);
       }
     }
 }
