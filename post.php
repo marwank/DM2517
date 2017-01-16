@@ -6,7 +6,7 @@ if ($id = $_GET['id']) {
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
   if ($desc = $_GET['desc']) {
-    $query = "UPDATE Posts SET descrition = '$desc' WHERE id = '$id'";
+    $query = "UPDATE Posts SET description = '$desc' WHERE id = '$id'";
     if (!mysqli_query($conn, $query)) {
       echo "Error: " . $query . "<br>" . mysqli_error($conn);
     }
