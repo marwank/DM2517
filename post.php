@@ -1,22 +1,23 @@
 <?php
 include('config.php');
 session_start();
+
+if ($tag = $_GET['tag']) {
+  $query = "INSERT INTO Tags (pid, tag) VALUES ('$id', '$tag')";
+  if (!mysqli_query($conn, $query)) {
+    echo "Error: " . $query . "<br>" . mysqli_error($conn);
+  }
+}
+if ($desc = $_GET['desc']) {
+  $query = "UPDATE Posts SET description = '$desc' WHERE id = '$id'";
+  if (!mysqli_query($conn, $query)) {
+    echo "Error: " . $query . "<br>" . mysqli_error($conn);
+  }
+}
 if ($id = $_GET['id']) {
   $sql = "SELECT * FROM Posts WHERE id = '$id'";
   $result = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_assoc($result);
-  if ($desc = $_GET['desc']) {
-    $query = "UPDATE Posts SET description = '$desc' WHERE id = '$id'";
-    if (!mysqli_query($conn, $query)) {
-      echo "Error: " . $query . "<br>" . mysqli_error($conn);
-    }
-  }
-  if ($tag = $_GET['tag']) {
-    $query = "INSERT INTO Tags (pid, tag) VALUES ('$id', '$tag')";
-    if (!mysqli_query($conn, $query)) {
-      echo "Error: " . $query . "<br>" . mysqli_error($conn);
-    }
-  }
+  $row = mysqli_fetch_assoc($result);  
 }
 ?>
 <html>
