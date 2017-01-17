@@ -11,7 +11,7 @@ $username = $_GET['username'];
     <title>Welcome</title>
 </head>
 <body>
-    <a href="welcome.php">Home</a>
+    <h1><a href="welcome.php">Home</a></h1>
     <?php
     $sql = "SELECT id, image from Posts WHERE uid IN
     (SELECT id FROM Users WHERE username = '$username')";

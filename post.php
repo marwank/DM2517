@@ -138,7 +138,7 @@ if ($id = $_GET['id']) {
 ?>
 <html>
 <body>
-    <a href="welcome.php">Home</a>
+    <h1><a href="welcome.php">Home</a></h1>
     <br>
     <?php
     if ($post) {

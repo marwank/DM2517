@@ -21,4 +21,4 @@ if ($searchquery = $_GET['searchquery']) {
 
 }
 ?>
-<a href="welcome.php">Home</a>
+<h1><a href="welcome.php">Home</a></h1>
