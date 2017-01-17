@@ -113,6 +113,7 @@ if ($id = $_GET['id']) {
                echo "Error: " . $set_previous_value_to_m1_query . "<br>" . mysqli_error($conn);
            }
        }
+   }
 
     // Feth the post
     $sql = "SELECT *
