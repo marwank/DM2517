@@ -17,6 +17,11 @@ if (!isset($_SESSION['username'])) {
         <input type="file" accept="image/jpeg,image/gif,image/x-png" name="userimage" id="userimage"/>
         <input type="submit" value="Upload Image" name="submit"/>
     </form>
+    <form action="search.php" method="get" enctype="text/plain">
+        Search among uploaded images:
+        <input type="text" accept="text/plain" name="searchquery" id="searchquery"/>
+        <input type="submit" value="Search" name="submit"/>
+    </form>
     <?php
     $sql = "SELECT * from Posts";
     $result = mysqli_query($conn, $sql);
