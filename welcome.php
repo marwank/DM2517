@@ -23,7 +23,8 @@ if (!isset($_SESSION['username'])) {
         <input type="submit" value="Search" name="submit"/>
     </form>
     <?php
-    $sql = "SELECT * from Posts";
+    $sql = "SELECT *
+            FROM Posts";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
         echo '<a href="post.php?id=' . $row['id'] . '">

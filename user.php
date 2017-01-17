@@ -11,12 +11,15 @@ $username = $_GET['username'];
     <title>Welcome</title>
 </head>
 <body>
+    <a href="welcome.php">Home</a>
     <?php
-    $sql = "SELECT image from Posts WHERE uid IN
+    $sql = "SELECT id, image from Posts WHERE uid IN
     (SELECT id FROM Users WHERE username = '$username')";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
-        echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>';
+        echo '<a href="post.php?id=' . $row['id'] . '">
+        <img src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>
+        </a>';
     }
     ?>
 </body>

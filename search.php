@@ -21,3 +21,4 @@ if ($searchquery = $_GET['searchquery']) {
 
 }
 ?>
+<a href="welcome.php">Home</a>
