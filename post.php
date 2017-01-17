@@ -134,6 +134,24 @@ if ($id = $_GET['id']) {
             JOIN Comments
             ON Users.id = uid AND pid = '$id'";
     $comments = mysqli_query($conn, $sql);
+
+    // Fetch likes for the post
+    $sql = "SELECT COUNT(value)
+            AS score
+            FROM Likes
+            WHERE pid = '$id'
+            AND value > 0";
+    $result = mysqli_query($conn, $sql);
+    $likes = mysqli_fetch_assoc($result);
+
+    // Fetch dislikes for the post
+    $sql = "SELECT COUNT(value)
+            AS score
+            FROM Likes
+            WHERE pid = '$id'
+            AND value < 0";
+    $result = mysqli_query($conn, $sql);
+    $dislikes = mysqli_fetch_assoc($result);
 }
 ?>
 <html>
@@ -142,8 +160,10 @@ if ($id = $_GET['id']) {
     <br>
     <?php
     if ($post) {
-        echo '<img src="data:image/jpeg;base64,'. base64_encode($post['image']) . '"/>';
-        echo '<p> Image description: ' . $post['description'] . '</p>';
+        echo '<img src="data:image/jpeg;base64,'. base64_encode($post['image']) . '"/>
+        <p> Likes: ' . ($likes['score'] ? $likes['score'] : '0') . '</p>
+        <p> Dislikes: ' . ($dislikes['score'] ? $dislikes['score'] : '0') . '</p>
+        <p> Image description: ' . $post['description'] . '</p>';
         while ($tag = mysqli_fetch_assoc($tags)) {
             echo '<p>' . $tag['tag'] . '</p>';
             if ($_SESSION['uid'] == $post['uid']) {
