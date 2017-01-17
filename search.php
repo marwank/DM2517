@@ -2,16 +2,17 @@
 include('config.php');
 session_start();
 if ($searchquery = $_GET['searchquery']) {
-    $terms = explode(" ", $searchquery);
-    $sql = "SELECT pid FROM
-                (SELECT pid FROM Tags WHERE tag IN(".implode(',',$terms).")
-            GROUP BY pid ORDER BY count(pid) DESC";
+    $terms = str_replace(" ", "','", $searchquery);
+    $sql = "SELECT pid FROM Tags WHERE tag IN ('".$terms."') GROUP BY pid ORDER BY count(pid) DESC;";
 
     if ($result = mysqli_query($conn, $sql)) {
-        print("eyy");
         while ($row = mysqli_fetch_assoc($result)) {
-            echo '<a href="post.php?id=' . $row['id'] . '">
-            <img src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>
+            $pid = $row['pid'];
+            $get_post_query = "SELECT * FROM Posts WHERE id = '$pid'";
+            $get_post_result = mysqli_query($conn, $get_post_query);
+            $get_post_row = mysqli_fetch_assoc($get_post_result);
+            echo '<a href="post.php?id=' . $get_post_row['id'] . '">
+            <img src="data:image/jpeg;base64,'.base64_encode( $get_post_row['image'] ).'"/>
             </a>';
         }
     } else {
