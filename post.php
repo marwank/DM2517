@@ -50,6 +50,70 @@ if ($id = $_GET['id']) {
         }
     }
 
+    if (isset($_POST['like']) && isset($_SESSION['uid'])) {
+       $uid = $_SESSION['uid'];
+       $pid = $_GET['id'];
+       $get_previous_value_query = "SELECT value FROM Likes WHERE uid = $uid AND pid = $pid";
+       $get_previous_value_result = mysqli_query($conn, $get_previous_value_query);
+       if ($get_previous_value_row = mysqli_fetch_assoc($get_previous_value_result)) {
+           // user has either liked or disliked this post before
+           $previous_value = $get_previous_value_row['value'];
+           if ($previous_value == 1) {
+               // user has liked the post before
+               // unlike it (set value to 0)
+               $delete_previous_value = "DELETE FROM Likes WHERE uid = $uid AND pid = $pid";
+               if (!mysqli_query($conn, $delete_previous_value)) {
+                   echo "Error: " . $delete_previous_value . "<br>" . mysqli_error($conn);
+               }
+           } else if ($previous_value == -1) {
+               // user has disliked the post before
+               // like it (set value to 1)
+               $set_previous_value_to_1_query = "UPDATE Likes SET value = 1 WHERE uid = $uid AND pid = $pid";
+               if (!mysqli_query($conn, $set_previous_value_to_1_query)) {
+                   echo "Error: " . $set_previous_value_to_1_query . "<br>" . mysqli_error($conn);
+               }
+           }
+       } else {
+           // user hasn't liked or disliked this post before
+           // like it (set value to 1)
+           $set_previous_value_to_1_query = "INSERT INTO Likes (uid, pid, value) VALUES ('$uid', '$pid', 1)";
+           if (!mysqli_query($conn, $set_previous_value_to_1_query)) {
+               echo "Error: " . $set_previous_value_to_1_query . "<br>" . mysqli_error($conn);
+           }
+       }
+   }
+   if (isset($_POST['dislike']) && isset($_SESSION['uid'])) {
+       $uid = $_SESSION['uid'];
+       $pid = $_GET['id'];
+       $get_previous_value_query = "SELECT value FROM Likes WHERE uid = $uid AND pid = $pid";
+       $get_previous_value_result = mysqli_query($conn, $get_previous_value_query);
+       if ($get_previous_value_row = mysqli_fetch_assoc($get_previous_value_result)) {
+           // user has either liked or disliked this post before
+           $previous_value = $get_previous_value_row['value'];
+           if ($previous_value == 1) {
+               // user has liked the post before
+               // dislike it (set value to -1)
+               $set_previous_value_to_m1_query = "UPDATE Likes SET value = -1 WHERE uid = $uid AND pid = $pid";
+               if (!mysqli_query($conn, $set_previous_value_to_m1_query)) {
+                   echo "Error: " . $set_previous_value_to_m1_query . "<br>" . mysqli_error($conn);
+               }
+           } else if ($previous_value == -1) {
+               // user has disliked the post before
+               // undislike it (set value to 0)
+               $delete_previous_value = "DELETE FROM Likes WHERE uid = $uid AND pid = $pid";
+               if (!mysqli_query($conn, $delete_previous_value)) {
+                   echo "Error: " . $delete_previous_value . "<br>" . mysqli_error($conn);
+               }
+           }
+       } else {
+           // user hasn't liked or disliked this post before
+           // dislike it (set value to -1)
+           $set_previous_value_to_m1_query = "INSERT INTO Likes (uid, pid, value) VALUES ('$uid', '$pid', 1)";
+           if (!mysqli_query($conn, $set_previous_value_to_m1_query)) {
+               echo "Error: " . $set_previous_value_to_m1_query . "<br>" . mysqli_error($conn);
+           }
+       }
+
     // Feth the post
     $sql = "SELECT *
             FROM Posts
@@ -113,6 +177,13 @@ if ($id = $_GET['id']) {
         <input type="submit" value="Edit description"/>
         </form>';
     }
+
+    if (isset($_SESSION['uid'])) {
+      echo '<form method="post" action="post.php?id='.$id.'">
+            <input type="submit" value="Like" name="like" />';
+      echo '<form method="post" action="post.php?id='.$id.'">
+            <input type="submit" value="Dislike" name="dislike" />';
+  }
 
     if (isset($_SESSION['uid'])) {
         echo '<form method="post" action="post.php?id=' . $id . '">
