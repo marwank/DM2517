@@ -2,20 +2,21 @@
                 version="1.0">
 <xsl:output indent="yes" method="html"/>
 <xsl:template match="/">
-   <html>
-     <head></head>
-     <body>
-      <xsl:apply-templates select="//image"/>
-      <p>
-          <xsl:apply-templates select="//likes"/>
-          <br/>
-          <xsl:apply-templates select="//dislikes"/>
-      </p>
-      <p>
-          <xsl:apply-templates select="//comments"/>
-      </p>
-     </body>
-   </html>
+    <html>
+         <head></head>
+         <body>
+             <h1><a href="welcome.php"><xsl:value-of select="//homeButton"/></a></h1>
+             <xsl:apply-templates select="//image"/>
+             <p>
+                 <xsl:apply-templates select="//likes"/>
+                 <br/>
+                 <xsl:apply-templates select="//dislikes"/>
+             </p>
+             <p>
+                 <xsl:apply-templates select="//comments"/>
+             </p>
+        </body>
+    </html>
 </xsl:template>
 
 <xsl:template match="image">
