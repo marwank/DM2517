@@ -153,7 +153,6 @@ if ($id = $_GET['id']) {
     $result = mysqli_query($conn, $sql);
     $dislikes = mysqli_fetch_assoc($result);
 
-
     class MySimpleXMLElement extends SimpleXMLElement {
         public function addProcessingInstruction( $name, $value )
        {
@@ -190,10 +189,6 @@ if ($id = $_GET['id']) {
     $tagsNode = $xml->addChild('tags');
     while ($tag = mysqli_fetch_assoc($tags)) {
         $tagsNode->addChild('tag', $tag['tag']);
-        if ($_SESSION['uid'] == $post['uid']) {
-            // TODO: Optionally remove tags if user is logged in and owns post
-
-        }
     }
 
     // Add comments
@@ -202,20 +197,30 @@ if ($id = $_GET['id']) {
         $commentNode = $commentsNode->addChild('comment');
         $commentNode->addChild('value', $comment['comment']);
         $commentNode->addChild('user', $comment['username']);
-        // TODO: Optionally remove comment if logged in and owns comment
+        $commentNode->addChild('uid', $comment['uid']);
+        if ($_SESSION['uid'] == $comment['uid']) {
+            // Remove your own comment
+            $commentNode->addChild('remove');
+        }
+    }
+
+    // Check if user is logged in
+    if (isset($_SESSION['uid'])) {
+        $usernode = $xml->addChild('user');
+        $userNode->addChild('uid', $_SESSION['uid']);
+        if ($_SESSION['uid'] == $post['uid']) {
+            $userNode->addChild('isOwner');
+        }
     }
 
     if ($_GET['lang'] == 'se') {
         $likesNode->addChild('text', 'Gillningar');
         $dislikesNode->addChild('text', 'Ogillningar');
-
         // x->addChild(y, 'Skriv en kommentar till den här bilden');
     } else {
         $likesNode->addChild('text', 'Likes');
         $dislikesNode->addChild('text', 'Dislikes');
         // x->addChild(y, 'Add a comment to this image');
-
-
     }
     $xml->addProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="post.xsl"');
     Header('Content-type: text/xml');
@@ -282,5 +287,4 @@ if ($id = $_GET['id']) {
 </body>
 </html>
 */
-
 ?>
