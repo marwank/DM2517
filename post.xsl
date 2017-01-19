@@ -11,6 +11,9 @@
           <br/>
           <xsl:apply-templates select="//dislikes"/>
       </p>
+      <p>
+          <xsl:apply-templates select="//comments"/>
+      </p>
      </body>
    </html>
 </xsl:template>
@@ -25,6 +28,13 @@
 
 <xsl:template match="dislikes">
     <xsl:value-of select="text"/>: <xsl:value-of select="value"/>
+</xsl:template>
+
+<xsl:template match="comments">
+    <xsl:for-each select="comment">
+        <i><xsl:value-of select="user"/></i>: <xsl:value-of select="value"/>
+        <br/>
+    </xsl:for-each>
 </xsl:template>
 
 </xsl:stylesheet>
