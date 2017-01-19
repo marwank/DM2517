@@ -12,7 +12,7 @@ if ($searchquery = $_GET['searchquery']) {
             $get_post_result = mysqli_query($conn, $get_post_query);
             $get_post_row = mysqli_fetch_assoc($get_post_result);
             echo '<a href="post.php?id=' . $get_post_row['id'] . '">
-            <img src="data:image/jpeg;base64,'.base64_encode( $get_post_row['image'] ).'"/>
+            <img width=400px height=300px src="data:image/jpeg;base64,'.base64_encode( $get_post_row['image'] ).'"/>
             </a>';
         }
     } else {
