@@ -180,11 +180,11 @@ if ($id = $_GET['id']) {
 
     // Add likes
     $likesNode = $xml->addChild('likes');
-    $likesNode->addChild('value', $likes['value']);
+    $likesNode->addChild('value', $likes['score']);
 
     // Add dislikes
     $dislikesNode = $xml->addChild('dislikes');
-    $dislikesNode->addChild('value', $dislikes['value']);
+    $dislikesNode->addChild('value', $dislikes['score']);
 
     // Add tags
     $tagsNode = $xml->addChild('tags');
