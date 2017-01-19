@@ -137,7 +137,7 @@ if ($id = $_GET['id']) {
 
     // Fetch likes for the post
     $sql = "SELECT COUNT(value)
-            AS score
+            AS value
             FROM Likes
             WHERE pid = '$id'
             AND value > 0";
