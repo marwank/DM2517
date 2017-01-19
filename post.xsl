@@ -6,6 +6,7 @@
      <head></head>
      <body>
       <xsl:apply-templates select="//image"/>
+      <xsl:apply-templates select="//likes"/>
      </body>
    </html>
 </xsl:template>
@@ -15,7 +16,7 @@
 </xsl:template>
 
 <xsl:template match="likes">
-    
+    <p><xsl:value-of select="text"/>: <xsl:value-of select="value"/><p>
 </xsl:template>
 
 
