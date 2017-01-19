@@ -27,7 +27,7 @@
                  <xsl:if test="//user">
                      <form method="post" action="post.php?id={//postID}">
                          <input type="text" accept="text/plain" name="addComment"/>
-                         <input type="submit" value="Add comment" />
+                         <input type="submit" value="{//addComment}" />
                      </form>
                 </xsl:if>
              </p>
