@@ -216,10 +216,14 @@ if ($id = $_GET['id']) {
     if ($_GET['lang'] == 'se') {
         $likesNode->addChild('text', 'Gillningar');
         $dislikesNode->addChild('text', 'Ogillningar');
+        $tagsNode->addChild('text', 'Taggar');
+        $commentsNode->addChild('text', 'Kommentarer');
         // x->addChild(y, 'Skriv en kommentar till den här bilden');
     } else {
         $likesNode->addChild('text', 'Likes');
         $dislikesNode->addChild('text', 'Dislikes');
+        $tagsNode->addChild('text', 'Tags');
+        $commentsNode->addChild('text', 'Comments');
         // x->addChild(y, 'Add a comment to this image');
     }
     $xml->addProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="post.xsl"');
