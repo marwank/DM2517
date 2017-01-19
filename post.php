@@ -190,7 +190,10 @@ if ($id = $_GET['id']) {
     $tagsNode = $xml->addChild('tags');
     while ($tag = mysqli_fetch_assoc($tags)) {
         $tagsNode->addChild('tag', $tag['tag']);
-        // TODO: Optionally remove tags if user is logged in and owns post
+        if ($_SESSION['uid'] == $post['uid']) {
+            // TODO: Optionally remove tags if user is logged in and owns post
+
+        }
     }
 
     // Add comments
@@ -198,16 +201,21 @@ if ($id = $_GET['id']) {
     while ($comment = mysqli_fetch_assoc($comments)) {
         $commentNode = $commentsNode->addChild('comment');
         $commentNode->addChild('value', $comment['comment']);
-        $commentsNode->addChild('user', $comment['username']);
+        $commentNode->addChild('user', $comment['username']);
         // TODO: Optionally remove comment if logged in and owns comment
     }
 
     if ($_GET['lang'] == 'se') {
         $likesNode->addChild('text', 'Gillningar');
         $dislikesNode->addChild('text', 'Ogillningar');
+
+        // x->addChild(y, 'Skriv en kommentar till den här bilden');
     } else {
         $likesNode->addChild('text', 'Likes');
         $dislikesNode->addChild('text', 'Dislikes');
+        // x->addChild(y, 'Add a comment to this image');
+
+
     }
     $xml->addProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="post.xsl"');
     Header('Content-type: text/xml');
