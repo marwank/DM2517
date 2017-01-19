@@ -7,18 +7,30 @@
          <body>
              <h1><a href="welcome.php"><xsl:value-of select="//homeButton"/></a></h1>
              <xsl:apply-templates select="//image"/>
-             <p><xsl:apply-templates select="//likes"/></p>
-             <xsl:if test="//isOwner">
-                 <form method="post" action="post.php?id={//postID}">
-                     <input type="submit" value="Like" name="like"/>
-                 </form>
-             </xsl:if>
-             <p><xsl:apply-templates select="//dislikes"/></p>
-             <xsl:if test="//isOwner">
-                 <form method="post" action="post.php?id={//postID}">
-                     <input type="submit" value="Dislike" name="dislike"/>
-                 </form>
-             </xsl:if>
+             <p>
+                 <xsl:apply-templates select="//likes"/>
+                 <xsl:if test="//isOwner">
+                     <form method="post" action="post.php?id={//postID}">
+                         <input type="submit" value="Like" name="like"/>
+                     </form>
+                 </xsl:if>
+             </p>
+             <p>
+                 <xsl:apply-templates select="//dislikes"/>
+                 <xsl:if test="//isOwner">
+                     <form method="post" action="post.php?id={//postID}">
+                         <input type="submit" value="Dislike" name="dislike"/>
+                     </form>
+                 </xsl:if>
+             </p>
+             <p>
+                 <xsl:if test="//user">
+                     <form method="post" action="post.php?id={//postID}">
+                         <input type="text" accept="text/plain" name="addComment"/>
+                         <input type="submit" value="Add comment" />
+                     </form>
+                </xsl:if>
+             </p>
              <p><xsl:apply-templates select="//comments"/></p>
         </body>
     </html>
