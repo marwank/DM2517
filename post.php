@@ -173,6 +173,7 @@ if ($id = $_GET['id']) {
     }
 
     $xml = new MySimpleXMLElement('<xml/>');
+    $xml->addChild('postID', $id);
 
     // Add image to XML
     $xml->addChild('image', base64_encode($post['image']));
