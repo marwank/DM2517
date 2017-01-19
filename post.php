@@ -206,7 +206,7 @@ if ($id = $_GET['id']) {
 
     // Check if user is logged in
     if (isset($_SESSION['uid'])) {
-        $usernode = $xml->addChild('user');
+        $userNode = $xml->addChild('user');
         $userNode->addChild('uid', $_SESSION['uid']);
         if ($_SESSION['uid'] == $post['uid']) {
             $userNode->addChild('isOwner');

@@ -32,7 +32,7 @@
 
 <xsl:template match="comments">
     <xsl:for-each select="comment">
-        <i><xsl:value-of select="user"/></i>: <xsl:value-of select="value"/>
+        <a href="user.php?username={user}"><xsl:value-of select="user"/></a>: <xsl:value-of select="value"/>
         <br/>
     </xsl:for-each>
 </xsl:template>
