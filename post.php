@@ -159,7 +159,7 @@ if ($id = $_GET['id']) {
     $likesNode->addChild('score', $likes['score']);
     $dislikesNode = $xml->addChild('dislikes');
     $dislikesNode->addChild('score', $dislikes['score']);
-    if ($_SESSION['lang'] == 'se') {
+    if ($_GET['lang'] == 'se') {
         $likesNode->addChild('text', 'Gillningar');
         $dislikesNode->addChild('text', 'Ogillningar');
     } else {
