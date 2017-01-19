@@ -22,15 +22,5 @@ if (!isset($_SESSION['username'])) {
         <input type="text" accept="text/plain" name="searchquery"/>
         <input type="submit" value="Search"/>
     </form>
-    <?php
-    $sql = "SELECT *
-            FROM Posts";
-    $result = mysqli_query($conn, $sql);
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo '<a href="post.php?id=' . $row['id'] . '">
-        <img src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>
-        </a>';
-    }
-    ?>
 </body>
 </html>

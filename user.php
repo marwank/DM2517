@@ -18,7 +18,7 @@ $username = $_GET['username'];
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
         echo '<a href="post.php?id=' . $row['id'] . '">
-        <img src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>
+        <img width=400px height=300px src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>
         </a>';
     }
     ?>
