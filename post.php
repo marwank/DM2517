@@ -152,6 +152,20 @@ if ($id = $_GET['id']) {
             AND value < 0";
     $result = mysqli_query($conn, $sql);
     $dislikes = mysqli_fetch_assoc($result);
+
+    $xml = new SimpleXMLElement('<xml/>');
+    $xml->addChild('image', base64_encode($post['image']));
+    $likesNode = $xml->addChild('likes');
+    $likesNode->addChild('score', $likes['score']);
+    $dislikesNode = $xml->addChild('dislikes');
+    $dislikesNode->addChild('score', $dislikes['score']);
+    if ($_SESSION['lang'] == 'se') {
+        $likesNode->addChild('text', 'Gillningar');
+        $dislikesNode->addChild('text', 'Ogillningar');
+    } else {
+        $likesNode->addChild('text', 'Likes');
+        $dislikesNode->addChild('text', 'Dislikes');
+    }
 }
 ?>
 <html>
