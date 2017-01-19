@@ -220,14 +220,17 @@ if ($id = $_GET['id']) {
         $dislikesNode->addChild('text', 'Ogillningar');
         $tagsNode->addChild('text', 'Taggar');
         $commentsNode->addChild('text', 'Kommentarer');
-        // x->addChild(y, 'Skriv en kommentar till den här bilden');
+        $xml->addChild('addComment', 'Lägg till kommentar');
+        $xml->addChild('editDesc', 'Ändra beskrivningen av din bild');
     } else {
         $xml->addChild('homeButton', 'Home');
         $likesNode->addChild('text', 'Likes');
         $dislikesNode->addChild('text', 'Dislikes');
         $tagsNode->addChild('text', 'Tags');
         $commentsNode->addChild('text', 'Comments');
-        // x->addChild(y, 'Add a comment to this image');
+        $xml->addChild('addComment', 'Add comment');
+        // x->addChild()
+        $xml->addChild('editDesc', 'Edit the description of your image');
     }
     $xml->addProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="post.xsl"');
     Header('Content-type: text/xml');
