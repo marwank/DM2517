@@ -153,7 +153,27 @@ if ($id = $_GET['id']) {
     $result = mysqli_query($conn, $sql);
     $dislikes = mysqli_fetch_assoc($result);
 
-    $xml = new SimpleXMLElement('<xml/>');
+
+    class MySimpleXMLElement extends SimpleXMLElement {
+        public function addProcessingInstruction( $name, $value )
+       {
+           // Create a DomElement from this simpleXML object
+           $dom_sxe = dom_import_simplexml($this);
+
+           // Create a handle to the owner doc of this xml
+           $dom_parent = $dom_sxe->ownerDocument;
+
+           // Find the topmost element of the domDocument
+           $xpath = new DOMXPath($dom_parent);
+           $first_element = $xpath->evaluate('/*[1]')->item(0);
+
+           // Add the processing instruction before the topmost element
+           $pi = $dom_parent->createProcessingInstruction($name, $value);
+           $dom_parent->insertBefore($pi, $first_element);
+       }
+    }
+
+    $xml = new MySimpleXMLElement('<xml/>');
     $xml->addChild('image', base64_encode($post['image']));
     $likesNode = $xml->addChild('likes');
     $likesNode->addChild('score', $likes['score']);
@@ -166,67 +186,8 @@ if ($id = $_GET['id']) {
         $likesNode->addChild('text', 'Likes');
         $dislikesNode->addChild('text', 'Dislikes');
     }
+    $xml->addProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="post.xsl"');
+    Header('Content-type: text/xml');
+    print($xml->asXML());
 }
 ?>
-<html>
-<body>
-    <h1><a href="welcome.php">Home</a></h1>
-    <br>
-    <?php
-    if ($post) {
-        echo '<img src="data:image/jpeg;base64,'. base64_encode($post['image']) . '"/>
-        <p> Likes: ' . ($likes['score'] ? $likes['score'] : '0') . '</p>
-        <p> Dislikes: ' . ($dislikes['score'] ? $dislikes['score'] : '0') . '</p>
-        <p> Image description: ' . $post['description'] . '</p>';
-        while ($tag = mysqli_fetch_assoc($tags)) {
-            echo '<p>' . $tag['tag'] . '</p>';
-            if ($_SESSION['uid'] == $post['uid']) {
-                echo '<form method="post" action="post.php?id=' . $id . '">
-                <input type="hidden" name="removeTag" value="'. $tag['tag'] . '"/>
-                <input type="submit" value="Remove"/>
-                </form>';
-            }
-        }
-
-        while ($comment = mysqli_fetch_assoc($comments)) {
-            $username = $comment['username'];
-            echo '<p> <a href="user.php?username=' . $username . '">' . $username . '</a>: ' . $comment['comment'] . '</p>';
-            if ($_SESSION['uid'] == $comment['uid']) {
-                echo '<form method="post" action="post.php?id=' . $id . '">
-                <input type="hidden" name="removeComment" value="'. $comment['id'] . '"/>
-                <input type="submit" value="Remove"/>
-                </form>';
-            }
-        }
-    }
-
-    if ($_SESSION['uid'] == $post['uid']) {
-        echo '<form method="post" action="post.php?id=' . $id . '">
-        Add a tag to your image:
-        <input type="text" accept="text/plain" name="addTag"/>
-        <input type="submit" value="Add tag"/>
-        </form>';
-        echo '<form method="post" action="post.php?id=' . $id . '">
-        Edit the description of your image:
-        <input type="text" accept="text/plain" name="addDescription"/>
-        <input type="submit" value="Edit description"/>
-        </form>';
-    }
-
-    if (isset($_SESSION['uid'])) {
-      echo '<form method="post" action="post.php?id='.$id.'">
-            <input type="submit" value="Like" name="like" />';
-      echo '<form method="post" action="post.php?id='.$id.'">
-            <input type="submit" value="Dislike" name="dislike" />';
-  }
-
-    if (isset($_SESSION['uid'])) {
-        echo '<form method="post" action="post.php?id=' . $id . '">
-        Add a comment to this image:
-        <input type="text" accept="text/plain" name="addComment"/>
-        <input type="submit" value="Add comment" />
-        </form>';
-    }
-    ?>
-</body>
-</html>
