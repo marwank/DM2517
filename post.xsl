@@ -8,7 +8,8 @@
       <xsl:apply-templates select="//image"/>
       <p>
           <xsl:apply-templates select="//likes"/>
-          <xsl:apply-tempaltes select="//dislikes"/>
+          <br/>
+          <xsl:apply-templates select="//dislikes"/>
       </p>
      </body>
    </html>
