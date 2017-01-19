@@ -146,7 +146,7 @@ if ($id = $_GET['id']) {
 
     // Fetch dislikes for the post
     $sql = "SELECT COUNT(value)
-            AS score
+            AS value
             FROM Likes
             WHERE pid = '$id'
             AND value < 0";
@@ -180,11 +180,11 @@ if ($id = $_GET['id']) {
 
     // Add likes
     $likesNode = $xml->addChild('likes');
-    $likesNode->addChild('value', $likes['score']);
+    $likesNode->addChild('value', $likes['value']);
 
     // Add dislikes
     $dislikesNode = $xml->addChild('dislikes');
-    $dislikesNode->addChild('value', $dislikes['score']);
+    $dislikesNode->addChild('value', $dislikes['value']);
 
     // Add tags
     $tagsNode = $xml->addChild('tags');
