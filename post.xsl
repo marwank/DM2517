@@ -37,29 +37,40 @@
 
                 <div style="post">
 
-                <div style="display: inline-block;">
-                    <div class="like">
-                        <xsl:if test="//user">
-                            <form style="display:inline-block;" method="post" action="post.php?id={//postID}">
-                                <input type="hidden" name="like"/>
-                                <input type="image" src="like.png" width="20px" height="20px" alt="Like"/>
-                            </form>
-                        </xsl:if>
-                        <xsl:apply-templates select="//likes"/>
-                    </div>
+                    <div style="display: inline-block;">
+                        <div class="like">
+                            <xsl:if test="//user">
+                                <form style="display:inline-block;" method="post" action="post.php?id={//postID}">
+                                    <input type="hidden" name="like"/>
+                                    <input type="image" src="like.png" width="20px" height="20px" alt="Like"/>
+                                </form>
+                            </xsl:if>
+                            <xsl:apply-templates select="//likes"/>
+                        </div>
 
-                    <div class="like">
-                        <xsl:if test="//user">
-                            <form style="display:inline-block;" method="post" action="post.php?id={//postID}">
-                                <input type="hidden" name="dislike"/>
-                                <input type="image" src="dislike.png" width="20px" height="20px" alt="Dislike"/>
-                            </form>
-                        </xsl:if>
-                        <xsl:apply-templates select="//dislikes"/>
+                        <div class="like">
+                            <xsl:if test="//user">
+                                <form style="display:inline-block;" method="post" action="post.php?id={//postID}">
+                                    <input type="hidden" name="dislike"/>
+                                    <input type="image" src="dislike.png" width="20px" height="20px" alt="Dislike"/>
+                                </form>
+                            </xsl:if>
+                            <xsl:apply-templates select="//dislikes"/>
+                        </div>
                     </div>
+                    <xsl:apply-templates select="//image"/>
+
+                    <xsl:if test="//isOwner">
+                        <div style="display: inline-block;">
+                            <form method="post" action="post.php?id={//postID}">
+                                <input type="text" accept="text/plain" name="addTag"/>
+                                <input type="submit" value="{//addTag}" />
+                            </form>
+                            <xsl:apply-templates select="//tags"/>
+                        </div>
+                    </xsl:if>
+
                 </div>
-                <xsl:apply-templates select="//image"/>
-            </div>
                 <xsl:apply-templates select="//description"/>
                 <xsl:if test="//isOwner">
                     <form class="center-block" method="post" action="post.php?id={//postID}">
@@ -68,14 +79,6 @@
                     </form>
                 </xsl:if>
 
-
-                <xsl:if test="//isOwner">
-                    <form method="post" action="post.php?id={//postID}">
-                        <input type="text" accept="text/plain" name="addTag"/>
-                        <input type="submit" value="{//addTag}" />
-                    </form>
-                    <xsl:apply-templates select="//tags"/>
-                </xsl:if>
                 <xsl:if test="//user">
                     <form class="center-block" method="post" action="post.php?id={//postID}">
                         <input type="textbox" accept="text/plain" name="addComment"/>

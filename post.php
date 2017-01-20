@@ -109,7 +109,7 @@ if ($id = $_GET['id']) {
        } else {
            // user hasn't liked or disliked this post before
            // dislike it (set value to -1)
-           $set_previous_value_to_m1_query = "INSERT INTO Likes (uid, pid, value) VALUES ('$uid', '$pid', 1)";
+           $set_previous_value_to_m1_query = "INSERT INTO Likes (uid, pid, value) VALUES ('$uid', '$pid', -1)";
            if (!mysqli_query($conn, $set_previous_value_to_m1_query)) {
                echo "Error: " . $set_previous_value_to_m1_query . "<br>" . mysqli_error($conn);
            }
