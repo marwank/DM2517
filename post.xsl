@@ -20,7 +20,8 @@
                     <xsl:apply-templates select="//likes"/>
                     <xsl:if test="//user">
                         <form method="post" action="post.php?id={//postID}">
-                            <input type="image" src="like.png" width="20px" height="20px" alt="Like" name="like"/>
+                            <input type="hidden" name="like"/>
+                            <input type="image" src="like.png" width="20px" height="20px" alt="Like"/>
                         </form>
                     </xsl:if>
                 </p>
@@ -28,7 +29,8 @@
                     <xsl:apply-templates select="//dislikes"/>
                     <xsl:if test="//user">
                         <form method="post" action="post.php?id={//postID}">
-                            <input type="image" src="dislike.png" width="20px" height="20px" alt="Dislike" name="dislike"/>
+                            <input type="hidden" name="dislike"/>
+                            <input type="image" src="dislike.png" width="20px" height="20px" alt="Dislike"/>
                         </form>
                     </xsl:if>
                 </p>
