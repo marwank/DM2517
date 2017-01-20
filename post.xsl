@@ -21,8 +21,9 @@
 
                     .flag {display: inline-block; position: absolute; top:0; right:0;}
 
-                    .center-block {display: block; text-align:center;}
+                    .center-block {display: block; text-align: center;}
 
+                    .like {display: block; text-align: center;}
                     }
                 </style>
             </head>
@@ -33,7 +34,32 @@
                     <input type="hidden" name="lang" value="{//changeLang}"/>
                     <input type="image" height="40px" width="40px" src="{//langFlag}" alt="{//changeLang}"/>
                 </form>
+
+                <div style="post">
+
+                <div style="display: inline-block;">
+                    <div class="like">
+                        <xsl:if test="//user">
+                            <form style="display:inline-block;" method="post" action="post.php?id={//postID}">
+                                <input type="hidden" name="like"/>
+                                <input type="image" src="like.png" width="20px" height="20px" alt="Like"/>
+                            </form>
+                        </xsl:if>
+                        <xsl:apply-templates select="//likes"/>
+                    </div>
+
+                    <div class="like">
+                        <xsl:if test="//user">
+                            <form style="display:inline-block;" method="post" action="post.php?id={//postID}">
+                                <input type="hidden" name="dislike"/>
+                                <input type="image" src="dislike.png" width="20px" height="20px" alt="Dislike"/>
+                            </form>
+                        </xsl:if>
+                        <xsl:apply-templates select="//dislikes"/>
+                    </div>
+                </div>
                 <xsl:apply-templates select="//image"/>
+            </div>
                 <xsl:apply-templates select="//description"/>
                 <xsl:if test="//isOwner">
                     <form class="center-block" method="post" action="post.php?id={//postID}">
@@ -41,48 +67,28 @@
                         <input type="submit" value="{//editDesc}"/>
                     </form>
                 </xsl:if>
-                <p>
-                    <xsl:apply-templates select="//likes"/>
-                    <xsl:if test="//user">
-                        <form method="post" action="post.php?id={//postID}">
-                            <input type="hidden" name="like"/>
-                            <input type="image" src="like.png" width="20px" height="20px" alt="Like"/>
-                        </form>
-                    </xsl:if>
-                </p>
-                <p>
-                    <xsl:apply-templates select="//dislikes"/>
-                    <xsl:if test="//user">
-                        <form method="post" action="post.php?id={//postID}">
-                            <input type="hidden" name="dislike"/>
-                            <input type="image" src="dislike.png" width="20px" height="20px" alt="Dislike"/>
-                        </form>
-                    </xsl:if>
-                </p>
+
+
                 <xsl:if test="//isOwner">
-                    <p>
-                        <form method="post" action="post.php?id={//postID}">
-                            <input type="text" accept="text/plain" name="addTag"/>
-                            <input type="submit" value="{//addTag}" />
-                        </form>
-                        <xsl:apply-templates select="//tags"/>
-                    </p>
+                    <form method="post" action="post.php?id={//postID}">
+                        <input type="text" accept="text/plain" name="addTag"/>
+                        <input type="submit" value="{//addTag}" />
+                    </form>
+                    <xsl:apply-templates select="//tags"/>
                 </xsl:if>
-                <p>
-                    <xsl:if test="//user">
-                        <form class="center-block" method="post" action="post.php?id={//postID}">
-                            <input type="textbox" accept="text/plain" name="addComment"/>
-                            <input type="submit" value="{//addComment}" />
-                        </form>
-                    </xsl:if>
-                </p>
-                <p><xsl:apply-templates select="//comments"/></p>
+                <xsl:if test="//user">
+                    <form class="center-block" method="post" action="post.php?id={//postID}">
+                        <input type="textbox" accept="text/plain" name="addComment"/>
+                        <input type="submit" value="{//addComment}" />
+                    </form>
+                </xsl:if>
+                <xsl:apply-templates select="//comments"/>
             </body>
         </html>
     </xsl:template>
 
     <xsl:template match="image">
-        <img class="post" src="data:image/jpeg;base64,{.}"/>
+        <img src="data:image/jpeg;base64,{.}"/>
     </xsl:template>
 
     <xsl:template match="description">
@@ -90,11 +96,15 @@
     </xsl:template>
 
     <xsl:template match="likes">
-        <xsl:value-of select="text"/>: <xsl:value-of select="value"/>
+        <div style="display:inline-block;">
+            <xsl:value-of select="text"/>: <xsl:value-of select="value"/>
+        </div>
     </xsl:template>
 
     <xsl:template match="dislikes">
-        <xsl:value-of select="text"/>: <xsl:value-of select="value"/>
+        <div style="display:inline-block;">
+            <xsl:value-of select="text"/>: <xsl:value-of select="value"/>
+        </div>
     </xsl:template>
 
     <xsl:template match="tags">
