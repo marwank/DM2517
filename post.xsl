@@ -5,12 +5,12 @@
         <html>
             <head>
                 <style>
-                    @media (max-width: 500px) {
+                    @media (max-width: 1000px) {
                         body {background-color: powderblue;}
                     }
 
                     @media (min-width: 1000px) {
-                        body {background-color: green;}
+                        body {background-color: blanchedalmond;}
                     }
                 </style>
             </head>
