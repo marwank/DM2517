@@ -36,6 +36,10 @@
                 </p>
                 <xsl:if test="//isOwner">
                     <p>
+                        <form method="post" action="post.php?id={//postID}">
+                            <input type="text" accept="text/plain" name="addTag"/>
+                            <input type="submit" value="{//addTag}" />
+                        </form>
                         <xsl:apply-templates select="//tags"/>
                     </p>
                 </xsl:if>
