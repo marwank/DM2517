@@ -1,6 +1,7 @@
 <?php
-include('config.php');
 session_start();
+include('config.php');
+
 if ($id = $_GET['id']) {
     // Remove tag
     if ($tag = $_POST['removeTag']) {
@@ -217,20 +218,28 @@ if ($id = $_GET['id']) {
         }
     }
 
-    if ($_GET['lang'] == 'se') {
+    if ($_SESSION['lang'] == 'se') {
+        $xml->addChild('inLang', 'In English');
+        $xml->addChild('changeLang', 'en');
+        $xml->addChild('langFlag', 'flag_en.svg');
         $xml->addChild('homeButton', 'Hem');
         $likesNode->addChild('text', 'Gillningar');
         $dislikesNode->addChild('text', 'Ogillningar');
         $tagsNode->addChild('text', 'Taggar');
         $commentsNode->addChild('text', 'Kommentarer');
+        $xml->addChild('addTag', 'Lägg till tagg');
         $xml->addChild('addComment', 'Lägg till kommentar');
         $xml->addChild('editDesc', 'Ändra beskrivningen av din bild');
     } else {
+        $xml->addChild('inLang', 'In Swedish');
+        $xml->addChild('changeLang', 'se');
+        $xml->addChild('langFlag', 'flag_se.svg');
         $xml->addChild('homeButton', 'Home');
         $likesNode->addChild('text', 'Likes');
         $dislikesNode->addChild('text', 'Dislikes');
         $tagsNode->addChild('text', 'Tags');
         $commentsNode->addChild('text', 'Comments');
+        $xml->addChild('addTag', 'Add tag');
         $xml->addChild('addComment', 'Add comment');
         $xml->addChild('editDesc', 'Edit the description of your image');
     }
