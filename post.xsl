@@ -35,8 +35,7 @@
                     <input type="image" height="40px" width="40px" src="{//langFlag}" alt="{//changeLang}"/>
                 </form>
 
-                <div style="post">
-
+                <div style="display: block; text-align: center; margin-left: auto; margin-right: auto;">
                     <div style="display: inline-block;">
                         <div class="like">
                             <xsl:if test="//user">
@@ -112,13 +111,13 @@
 
     <xsl:template match="tags">
         <xsl:for-each select="tag">
-            <a href="search.php?searchQuery={.}">
-                <xsl:value-of select="."/>
-            </a>
-            <form method="post" action="post.php?id={//postID}">
-                <input type="hidden" name="removeTag" value="{.}"/>
-                <input type="image" width="15px" height="15px" src="minus.jpg" alt="-"/>
-            </form>
+            <div style="display:block;">
+                <form style="display: inline-block; margin-left: 5px; margin-right: 5px;" method="post" action="post.php?id={//postID}">
+                    <input type="hidden" name="removeTag" value="{.}"/>
+                    <input type="image" width="15px" height="15px" src="minus.jpg" alt="-"/>
+                </form>
+                <a style="display: inline-block;" href="search.php?searchQuery={.}"><xsl:value-of select="."/></a>
+            </div>
         </xsl:for-each>
     </xsl:template>
 
