@@ -51,6 +51,11 @@
 <xsl:template match="comments">
     <xsl:for-each select="comment">
         <a href="user.php?username={user}"><xsl:value-of select="user"/></a>: <xsl:value-of select="value"/>
+        <xsl:if test="uid = ../uid">
+            <form method="post" action="post.php?id={//postID}">
+                <input type="submit"  name="removeComment" value="-"/>
+            </form>
+        </xsl:if>
         <br/>
     </xsl:for-each>
 </xsl:template>
