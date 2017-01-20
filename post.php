@@ -197,11 +197,11 @@ if ($id = $_GET['id']) {
     while ($comment = mysqli_fetch_assoc($comments)) {
         $commentNode = $commentsNode->addChild('comment');
         $commentNode->addChild('value', $comment['comment']);
-        $commentNode->addChild('user', $comment['username']);
-        $commentNode->addChild('uid', $comment['uid']);
+        $commentNode->addChild('username', $comment['username']);
+        $commentNode->addChild('commentID', $comment['id']);
         if ($_SESSION['uid'] == $comment['uid']) {
             // Remove your own comment
-            $commentNode->addChild('remove');
+            $commentNode->addChild('removeComment');
         }
     }
 
