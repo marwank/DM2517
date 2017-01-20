@@ -8,6 +8,15 @@
                 <h1><a href="welcome.php"><xsl:value-of select="//homeButton"/></a></h1>
                 <xsl:apply-templates select="//image"/>
                 <p>
+                    <xsl:apply-templates select="//description"/>
+                    <xsl:if test="//isOwner">
+                        <form method="post" action="post.php?id={//postID}">
+                            <input type="text" accept="text/plain" name="{//editDescription}"/>
+                            <input type="submit" value="{//editDescription}"/>
+                        </form>
+                    </xsl:if>
+                </p>
+                <p>
                     <xsl:apply-templates select="//likes"/>
                     <xsl:if test="//user">
                         <form method="post" action="post.php?id={//postID}">
@@ -43,6 +52,10 @@
 
     <xsl:template match="image">
         <img src="data:image/jpeg;base64,{.}"/>
+    </xsl:template>
+
+    <xsl:template match="description">
+        <xsl:value-of select="."/>
     </xsl:template>
 
     <xsl:template match="likes">
