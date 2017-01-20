@@ -40,8 +40,8 @@ if ($id = $_GET['id']) {
         }
     }
 
-    // Add description
-    if ($desc = $_POST['addDescription']) {
+    // Edit description
+    if ($desc = $_POST['editDescription']) {
         $sql = "UPDATE Posts
                 SET description = '$desc'
                 WHERE id = '$id'";
