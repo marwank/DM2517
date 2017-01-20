@@ -10,21 +10,25 @@
                     }
 
                     @media (min-width: 1000px) {
+
                     body {background-color: blanchedalmond;}
-                    IMG.post {display: block; margin-left: auto; margin-right: auto;}
-                    .topRow {display: block; margin-left: auto; margin-right: auto;}
+
+                    .post {display: block; margin-left: auto; margin-right: auto;}
+
+                    h1 {display: inline-block; margin-left: auto; margin-right: auto;}
+
+                    .flag {display: inline-block;}
+
                     }
                 </style>
             </head>
             <body>
-                <div class="topRow">
                     <h1><a href="welcome.php"><xsl:value-of select="//homeButton"/></a></h1>
-                    <form method="get" action="post.php">
+                    <form class="flag" method="get" action="post.php">
                         <input type="hidden" name="id" value="{//postID}"/>
                         <input type="hidden" name="lang" value="{//changeLang}"/>
                         <input type="image" height="40px" width="40px" src="{//langFlag}" alt="{//changeLang}"/>
                     </form>
-                </div>
                 <xsl:apply-templates select="//image"/>
                 <p>
                     <xsl:apply-templates select="//description"/>
