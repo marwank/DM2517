@@ -17,13 +17,15 @@
 
                     h1 {display: inline-block; margin-left: auto; margin-right: auto;}
 
-                    .flag {display: inline-block;}
+                    .homeLink {display:inline-block; position: absolute; top:0; left:0;}
+
+                    .flag {display: inline-block; position: absolute; top:0; right:0;}
 
                     }
                 </style>
             </head>
             <body>
-                    <h1><a href="welcome.php"><xsl:value-of select="//homeButton"/></a></h1>
+                    <h1><a class="homeLink" href="welcome.php"><xsl:value-of select="//homeButton"/></a></h1>
                     <form class="flag" method="get" action="post.php">
                         <input type="hidden" name="id" value="{//postID}"/>
                         <input type="hidden" name="lang" value="{//changeLang}"/>
