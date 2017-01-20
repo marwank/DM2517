@@ -21,6 +21,8 @@
 
                     .flag {display: inline-block; position: absolute; top:0; right:0;}
 
+                    .description {display: block; margin-left: auto; margin-right:auto;}
+
                     }
                 </style>
             </head>
@@ -33,6 +35,7 @@
                     </form>
                 <xsl:apply-templates select="//image"/>
                 <p>
+                    <div class="description">
                     <xsl:apply-templates select="//description"/>
                     <xsl:if test="//isOwner">
                         <form method="post" action="post.php?id={//postID}">
@@ -40,6 +43,7 @@
                             <input type="submit" value="{//editDesc}"/>
                         </form>
                     </xsl:if>
+                </div>
                 </p>
                 <p>
                     <xsl:apply-templates select="//likes"/>
