@@ -12,7 +12,7 @@
                     <xsl:if test="//isOwner">
                         <form method="post" action="post.php?id={//postID}">
                             <input type="text" accept="text/plain" name="{//editDescription}"/>
-                            <input type="submit" value="{//editDescription}"/>
+                            <input type="submit" value="{//editDesc}"/>
                         </form>
                     </xsl:if>
                 </p>
