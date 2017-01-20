@@ -9,7 +9,7 @@
                 <xsl:apply-templates select="//image"/>
                 <p>
                     <xsl:apply-templates select="//likes"/>
-                    <xsl:if test="//isOwner">
+                    <xsl:if test="//user">
                         <form method="post" action="post.php?id={//postID}">
                             <input type="submit" value="Like" name="like"/>
                         </form>
@@ -17,12 +17,17 @@
                 </p>
                 <p>
                     <xsl:apply-templates select="//dislikes"/>
-                    <xsl:if test="//isOwner">
+                    <xsl:if test="//user">
                         <form method="post" action="post.php?id={//postID}">
                             <input type="submit" value="Dislike" name="dislike"/>
                         </form>
                     </xsl:if>
                 </p>
+                <xsl:if test="//isOwner">
+                    <p>
+                        <xsl:apply-templates select="//tags"/>
+                    </p>
+                </xsl:if>
                 <p>
                     <xsl:if test="//user">
                         <form method="post" action="post.php?id={//postID}">
@@ -46,6 +51,16 @@
 
     <xsl:template match="dislikes">
         <xsl:value-of select="text"/>: <xsl:value-of select="value"/>
+    </xsl:template>
+
+    <xsl:template match="tags">
+        <xsl:for-each select="tag">
+            <xsl:value-of select="."/>
+            <form method="post" action="post.php?id={//postID}">
+                <input type="hidden" name="removeTag" value="{.}"/>
+                <inpyt type="submit" value="-"/>
+            </form>
+        </xsl:for-each>
     </xsl:template>
 
     <xsl:template match="comments">
