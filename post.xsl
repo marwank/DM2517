@@ -58,7 +58,7 @@
             <xsl:value-of select="."/>
             <form method="post" action="post.php?id={//postID}">
                 <input type="hidden" name="removeTag" value="{.}"/>
-                <inpyt type="submit" value="-"/>
+                <input type="submit" value="-"/>
             </form>
         </xsl:for-each>
     </xsl:template>
