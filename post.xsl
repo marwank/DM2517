@@ -80,7 +80,9 @@
 
 <xsl:template match="tags">
     <xsl:for-each select="tag">
-        <xsl:value-of select="."/>
+        <a href="search.php?searchQuery={.}">
+            <xsl:value-of select="."/>
+        </a>
         <form method="post" action="post.php?id={//postID}">
             <input type="hidden" name="removeTag" value="{.}"/>
             <input type="image" width="15px" height="15px" src="minus.jpg" alt="-"/>
