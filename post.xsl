@@ -3,7 +3,17 @@
     <xsl:output indent="yes" method="html"/>
     <xsl:template match="/">
         <html>
-            <head></head>
+            <head>
+                <style>
+                    @media (max-width: 500px) {
+                        body {background-color: powderblue;}
+                    }
+
+                    @media (min-width: 1000px) {
+                        body {background-color: green;}
+                    }
+                </style>
+            </head>
             <body>
                 <h1><a href="welcome.php"><xsl:value-of select="//homeButton"/></a></h1>
                 <form method="get" action="post.php">
