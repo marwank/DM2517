@@ -178,6 +178,9 @@ if ($id = $_GET['id']) {
     // Add image to XML
     $xml->addChild('image', base64_encode($post['image']));
 
+    // Add description
+    $xml->addChild('description', $post['description']);
+
     // Add likes
     $likesNode = $xml->addChild('likes');
     $likesNode->addChild('value', $likes['value']);
@@ -229,7 +232,6 @@ if ($id = $_GET['id']) {
         $tagsNode->addChild('text', 'Tags');
         $commentsNode->addChild('text', 'Comments');
         $xml->addChild('addComment', 'Add comment');
-        // x->addChild()
         $xml->addChild('editDesc', 'Edit the description of your image');
     }
     $xml->addProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="post.xsl"');
