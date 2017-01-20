@@ -11,7 +11,7 @@
                     <xsl:apply-templates select="//likes"/>
                     <xsl:if test="//user">
                         <form method="post" action="post.php?id={//postID}">
-                            <input type="submit" value="Like" name="like"/>
+                            <input type="image" src="like.png" width="20px" height="20px" alt="Like" name="like"/>
                         </form>
                     </xsl:if>
                 </p>
@@ -19,7 +19,7 @@
                     <xsl:apply-templates select="//dislikes"/>
                     <xsl:if test="//user">
                         <form method="post" action="post.php?id={//postID}">
-                            <input type="submit" value="Dislike" name="dislike"/>
+                            <input type="image" src="dislike.png" width="20px" height="20px" alt="Dislike" name="dislike"/>
                         </form>
                     </xsl:if>
                 </p>
@@ -58,7 +58,7 @@
             <xsl:value-of select="."/>
             <form method="post" action="post.php?id={//postID}">
                 <input type="hidden" name="removeTag" value="{.}"/>
-                <input type="submit" value="-"/>
+                <input type="image" width="15px" height="15px" src="minus.jpg" alt="-"/>
             </form>
         </xsl:for-each>
     </xsl:template>
@@ -69,7 +69,7 @@
             <xsl:if test="removeComment">
                 <form method="post" action="post.php?id={//postID}">
                     <input type="hidden" name="removeComment" value="{commentID}"/>
-                    <input type="submit" value="-"/>
+                    <input type="image" width="15px" height="15px" src="minus.jpg" alt="-"/>
                 </form>
             </xsl:if>
             <br/>
