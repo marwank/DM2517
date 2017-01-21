@@ -7,6 +7,20 @@
                 <style>
                     @media (max-width: 1000px) {
                     body {background-color: powderblue;}
+                    
+                    .post {display: block; margin-left: auto; margin-right: auto;}
+
+                    h1 {display: inline-block; margin-left: auto; margin-right: auto;}
+
+                    .homeLink {display:inline-block; position: absolute; top:0; left:0;}
+
+                    .flag {display: inline-block; position: absolute; top:0; right:0;}
+
+                    .center-block {display: block; text-align: center;}
+
+                    .like {display: block; text-align: center;}
+
+                    .tags {display: none;}
                     }
 
                     @media (min-width: 1000px) {
@@ -24,6 +38,8 @@
                     .center-block {display: block; text-align: center;}
 
                     .like {display: block; text-align: center;}
+
+                    .tags {display: inline-block;}
                     }
                 </style>
             </head>
@@ -60,7 +76,7 @@
                     <xsl:apply-templates select="//image"/>
 
                     <xsl:if test="//isOwner">
-                        <div style="display: inline-block;">
+                        <div class="tags">
                             <form method="post" action="post.php?id={//postID}">
                                 <input type="text" accept="text/plain" name="addTag"/>
                                 <input type="submit" value="{//addTag}" />
