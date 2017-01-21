@@ -51,7 +51,7 @@
 
                     .tags {display: inline-block;}
 
-                    .pic-likes-tags {display: block; text-align: center; margin-left: auto; margin-right: auto;}
+                    .pic-likes-tags {display: block; text-align: center; margin-left: auto; margin-right: 50px;}
 
                     .likes {display: inline-block;}
 
