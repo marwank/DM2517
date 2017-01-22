@@ -159,7 +159,7 @@
                     <input type="hidden" name="removeTag" value="{.}"/>
                     <input type="image" width="15px" height="15px" src="minus.jpg" alt="-"/>
                 </form>
-                <a style="display: inline-block;" href="search.php?searchQuery={.}"><xsl:value-of select="."/></a>
+                <a style="display: inline-block;" href="search.php?searchquery={.}"><xsl:value-of select="."/></a>
             </div>
         </xsl:for-each>
     </xsl:template>
