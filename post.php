@@ -182,7 +182,8 @@ if ($id = $_GET['id']) {
 
     $xml = new MySimpleXMLElement('<xml/>');
     $xml->addChild('postID', $id);
-    $xml->addChild('postUser', $username['username']);
+    $postUser = $xml->addChild('postUser');
+    $postUser->addChild('value', $username['username']);
 
     // Add image to XML
     $xml->addChild('image', base64_encode($post['image']));
@@ -227,7 +228,7 @@ if ($id = $_GET['id']) {
     }
 
     if ($_SESSION['lang'] == 'se') {
-        $xml->addChild('uploadedBy', 'Uploaded by');
+        $postUser->addChild('text', 'Uploaded by');
         $xml->addChild('inLang', 'In English');
         $xml->addChild('changeLang', 'en');
         $xml->addChild('langFlag', 'flag_en.svg');
@@ -240,7 +241,7 @@ if ($id = $_GET['id']) {
         $xml->addChild('addComment', 'Lägg till kommentar');
         $xml->addChild('editDesc', 'Ändra beskrivningen av din bild');
     } else {
-        $xml->addChild('uploadedBy', 'Laddades upp av:');
+        $postUser->addChild('text', 'Laddades upp av:');
         $xml->addChild('inLang', 'In Swedish');
         $xml->addChild('changeLang', 'se');
         $xml->addChild('langFlag', 'flag_se.svg');
