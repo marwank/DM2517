@@ -30,7 +30,8 @@ fclose($fp);
 $userid = $_SESSION['uid'];
 $sql = "INSERT INTO Posts (uid, description, image) VALUES ('$userid', 'Test description', '$content')";
 if (mysqli_query($conn, $sql)) {
-    header("location: welcome.php");
+    $id = mysqli_insert_id($conn);
+    header("location: post.php?id=" . $id);
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
