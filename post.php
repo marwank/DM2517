@@ -228,7 +228,7 @@ if ($id = $_GET['id']) {
     }
 
     if ($_SESSION['lang'] == 'se') {
-        $postUser->addChild('text', 'Uploaded by');
+        $postUser->addChild('text', 'Laddades upp av');
         $xml->addChild('inLang', 'In English');
         $xml->addChild('changeLang', 'en');
         $xml->addChild('langFlag', 'flag_en.svg');
@@ -241,7 +241,7 @@ if ($id = $_GET['id']) {
         $xml->addChild('addComment', 'Lägg till kommentar');
         $xml->addChild('editDesc', 'Ändra beskrivningen av din bild');
     } else {
-        $postUser->addChild('text', 'Laddades upp av:');
+        $postUser->addChild('text', 'Uploaded by');
         $xml->addChild('inLang', 'In Swedish');
         $xml->addChild('changeLang', 'se');
         $xml->addChild('langFlag', 'flag_se.svg');
