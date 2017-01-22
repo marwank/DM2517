@@ -106,6 +106,7 @@
                     </div>
 
                 </div>
+                <xsl:apply-templates select="//postUser"/>
                 <xsl:apply-templates select="//description"/>
                 <xsl:if test="//isOwner">
                     <form class="center-block" method="post" action="post.php?id={//postID}">
@@ -127,6 +128,12 @@
 
     <xsl:template match="image">
         <img src="data:image/jpeg;base64,{.}"/>
+    </xsl:template>
+
+    <xsl:template match="postUser">
+        <p class="center-block">
+            <xsl:value-of select="text"/>: <a href="user.php?username={value}"><xsl:value-of select="value"/></a>
+        </p>
     </xsl:template>
 
     <xsl:template match="description">
